@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>ID</label>
+        <input type="text" value="001" id="id"><br>
+        <label>Name</label>
+        <input type="text" value="kok" id="name"><br>
+        <label>Gender</label>
+        <input type="radio" checked id="male" name="gender">male
+        <input type="radio" id="female" name="gender">female<br>
+        <input type="button" value="Add" onclick="add()">
+    </form>
+    <div id="con"></div>
+</body>
+<script>
+  var str = ""
+  var gender = "";
+  function add(){
+      var id = document.getElementById("id").value;
+      var name = document.getElementById("name").value.trim();
+      var female = document.getElementById("female");
+      var male = document.getElementById("male");
+      var numregex = /^[0-9]*$/gm
+      var strregex = /^[a-zA-Z ]*$/gm
+      var result = id.match(numregex)
+      var result1 = name.match(strregex)
+      var table = "<table border='1'><tr><td>ID</td><td>Name</td><td>Gender</td></tr>"
+      if(male.checked){
+          gender = "male"
+      }else{
+          gender = "female"
+      }
+      if(result != null && result1 != null && gender != ""){
+        str += "<tr><td>"+result+"</td><td>"+result1+"</td><td>"+gender+"</td></tr>"
+        
+      }else{
+        alert("Invalided Input!!")
+      }
+      table += str
+      table += "</table>"
+      document.getElementById("con").innerHTML = table
+  }
+</script>
+</html>
